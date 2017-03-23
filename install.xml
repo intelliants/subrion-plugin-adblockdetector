@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin name="adblockdetector">
-	<title>AdBlock Detector</title>
-	<summary>Asks to disable Adblock browser extension</summary>
-	<author>Intelliants LLC</author>
-	<contributor>Intelliants LLC</contributor>
-	<version>1.0.0</version>
-	<date>2015-09-04</date>
-	<compatibility>3.3</compatibility>
+<module type="plugin" name="adblockdetector">
+    <title>AdBlock Detector</title>
+    <summary>Asks to disable Adblock browser extension</summary>
+    <author>Intelliants LLC</author>
+    <contributor>Intelliants LLC</contributor>
+    <version>1.1.0</version>
+    <date>2017-03-23</date>
+    <compatibility>4.1</compatibility>
 
-	<hooks>
-		<hook name="smartyFrontAfterHeadSection" type="smarty">
-			<![CDATA[
-{ia_add_media files='js:_IA_URL_plugins/adblockdetector/js/blockadblock,js:_IA_URL_plugins/adblockdetector/js/bootstrap-notify.min'}
+    <hooks>
+        <hook name="smartyFrontAfterHeadSection" type="smarty">
+            <![CDATA[
+{ia_add_media files='js:_IA_URL_modules/adblockdetector/js/blockadblock,js:_IA_URL_modules/adblockdetector/js/bootstrap-notify.min'}
 {ia_add_js}
 function adBlockDetected()
 {
-	$.notify({
-		// options
-		message: _t('adblockdetector_content'),
-	}, {
-		type: 'danger',
-		allow_dismiss: false,
-		'placement.align': 'center',
-		delay: 20000,
-	});
+    $.notify({
+        // options
+        message: _t('adblockdetector_content'),
+    }, {
+        type: 'danger',
+        allow_dismiss: false,
+        'placement.align': 'center',
+        delay: 20000,
+    });
 }
 
 $(function()
 {
-	(typeof blockAdBlock === 'undefined') ? adBlockDetected() : blockAdBlock.onDetected(adBlockDetected);
+    (typeof blockAdBlock === 'undefined') ? adBlockDetected() : blockAdBlock.onDetected(adBlockDetected);
 });
-	{/ia_add_js}
-			]]></hook>
-	</hooks>
+    {/ia_add_js}
+            ]]></hook>
+    </hooks>
 
-	<phrases>
-		<phrase category="frontend" key="adblockdetector_content">Ads placement is the only way keep this website online. Please disable ad blocker to help us.</phrase>
-	</phrases>
-</plugin>
+    <phrases>
+        <phrase category="frontend" key="adblockdetector_content">Ads placement is the only way keep this website online. Please disable ad blocker to help us.</phrase>
+    </phrases>
+</module>
